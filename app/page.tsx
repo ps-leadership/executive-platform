@@ -1,7 +1,10 @@
+import FeaturedThinking from "@/components/FeaturedThinking";
+import FrameworkLibrary from "@/components/FrameworkLibrary";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <section className="mx-auto max-w-5xl px-6 py-32">
+      
+     <section className="mx-auto max-w-6xl px-8 pt-24 pb-16">
         <h1 className="text-6xl font-bold tracking-tight">
           Priyanshu Shrivastava
         </h1>
@@ -25,6 +28,8 @@ export default function Home() {
           </button>
         </div>
       </section>
+        <FeaturedThinking />
+        <FrameworkLibrary />
     </main>
   );
 }
