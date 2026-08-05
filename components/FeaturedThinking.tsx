@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function FeaturedThinking() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-12">
@@ -15,9 +16,10 @@ export default function FeaturedThinking() {
           customer outcomes.
         </p>
 
-        <button className="mt-6 rounded-lg border px-5 py-3">
-          Read More →
-        </button>
+        <Link href="/insights"
+          className="mt-6 inline-block rounded-lg border px-5 py-3 transition hover:bg-slate-100">
+        Explore Insights →
+        </Link>
       </div>
     </section>
   );

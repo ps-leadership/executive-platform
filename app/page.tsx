@@ -1,7 +1,10 @@
+import Navbar from "@/components/Navbar";
 import FeaturedThinking from "@/components/FeaturedThinking";
 import FrameworkLibrary from "@/components/FrameworkLibrary";
 export default function Home() {
   return (
+     <>
+      <Navbar />
     <main className="min-h-screen bg-white text-gray-900">
       
      <section className="mx-auto max-w-6xl px-8 pt-24 pb-16">
@@ -31,5 +34,6 @@ export default function Home() {
         <FeaturedThinking />
         <FrameworkLibrary />
     </main>
+    </>
   );
 }
