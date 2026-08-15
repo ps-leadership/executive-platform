@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
 export default function InsightsPage() {
   const articles = [
@@ -38,7 +37,6 @@ export default function InsightsPage() {
 
   return (
     <>
-    <Navbar />
     <main className="mx-auto max-w-6xl px-8 py-20">
       <Link href="/"
             className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900">

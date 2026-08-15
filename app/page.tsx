@@ -4,8 +4,7 @@ import FrameworkLibrary from "@/components/FrameworkLibrary";
 export default function Home() {
   return (
      <>
-      <Navbar />
-    <main className="min-h-screen bg-white text-gray-900">
+    <main className="min-h-screen">
       
      <section className="mx-auto max-w-6xl px-8 pt-24 pb-16">
         <h1 className="text-6xl font-bold tracking-tight">
