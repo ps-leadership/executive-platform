@@ -1,38 +1,74 @@
-import Navbar from "@/components/Navbar";
 import FeaturedThinking from "@/components/FeaturedThinking";
 import FrameworkLibrary from "@/components/FrameworkLibrary";
+import HeroVisual from "@/components/HeroVisual";
+
 export default function Home() {
   return (
-     <>
-    <main className="min-h-screen">
-      
-     <section className="mx-auto max-w-6xl px-8 pt-24 pb-16">
-        <h1 className="text-6xl font-bold tracking-tight">
-          Priyanshu Shrivastava
-        </h1>
+    <main className="min-h-screen bg-[#fffaf3]">
 
-        <p className="mt-8 max-w-3xl text-2xl leading-relaxed text-gray-600">
-          Building, Transforming & Scaling Customer Organizations.
-        </p>
+      {/* Hero */}
+      <section className="mx-auto max-w-7xl px-8 pb-24 pt-20 md:px-10 md:pt-28">
+        <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
 
-        <p className="mt-10 max-w-3xl text-lg leading-8 text-gray-500">
-          Leadership insights, operating models, frameworks, and research from
-          nearly two decades of building global customer-facing organizations.
-        </p>
+          {/* Left side */}
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#2563eb]">
+              Technology · Customers · Transformation
+            </p>
 
-        <div className="mt-14 flex gap-4">
-          <button className="rounded-lg bg-black px-6 py-3 text-white">
-            Explore Insights
-          </button>
+            <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-0.04em] text-[#172033] md:text-7xl">
+              Priyanshu
+              <br />
+              Shrivastava
+            </h1>
 
-          <button className="rounded-lg border px-6 py-3">
-            Executive Profile
-          </button>
+            <h2 className="mt-8 max-w-2xl text-2xl font-medium leading-snug text-[#34425a] md:text-3xl">
+              Building, transforming & scaling customer organizations.
+            </h2>
+
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#667085]">
+              Technology leader connecting deep technical expertise,
+              customer value, organizational capability and transformation
+              to turn complex problems into scalable outcomes.
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href="/about"
+                className="rounded-full bg-[#172033] px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#2563eb]"
+              >
+                Executive Profile →
+              </a>
+
+              <a
+                href="/resume"
+                className="rounded-full border border-[#172033]/20 bg-white px-7 py-3.5 text-sm font-semibold text-[#172033] transition hover:-translate-y-0.5 hover:border-[#2563eb] hover:text-[#2563eb]"
+              >
+                View Resume
+              </a>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm font-medium text-[#667085]">
+              <span>● Leadership</span>
+              <span>● Transformation</span>
+              <span>● Customer Organizations</span>
+              <span>● AI & Technology</span>
+            </div>
+          </div>
+
+          {/* Right side visual */}
+<HeroVisual
+  src="/images/hero-right-ai.png"
+  alt="Vibrant marketplace at golden hour"
+/>
+
         </div>
       </section>
-        <FeaturedThinking />
-        <FrameworkLibrary />
+
+      {/* Existing sections */}
+      <FeaturedThinking />
+      <FrameworkLibrary />
+
     </main>
-    </>
   );
 }
