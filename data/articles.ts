@@ -102,7 +102,7 @@ export const articles: Article[] = [
 
 {
   slug: "quiet-ai-advantage",
-  title: "Part 3: The Quiet AI Advantage — How Everyday AI Turns Strategy into Execution",
+  title: "The Quiet AI Advantage — How Everyday AI Turns Strategy into Execution",
   excerpt:
     "How everyday AI can translate strategic intent into practical execution.",
   date: "2025",
