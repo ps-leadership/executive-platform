@@ -151,6 +151,100 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Executive Experience */}
+      <section className="bg-[#fffaf3]">
+        <div className="mx-auto max-w-7xl px-8 py-24 md:px-10">
+
+          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
+
+            {/* Intro */}
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#2563eb]">
+                Executive Experience
+              </p>
+
+              <h2 className="mt-5 text-4xl font-semibold tracking-tight text-[#172033] md:text-5xl">
+                A career built across technology, customers and transformation.
+              </h2>
+
+              <p className="mt-6 max-w-lg text-lg leading-8 text-[#667085]">
+                Nearly two decades of experience moving between engineering,
+                technical leadership, customer organizations and transformation —
+                bringing different perspectives together to solve complex
+                enterprise problems.
+              </p>
+
+              <a
+                href="/resume"
+                className="mt-8 inline-flex rounded-full bg-[#172033] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2563eb]"
+              >
+                View Full Resume →
+              </a>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative border-l border-[#172033]/15 pl-8 md:pl-10">
+
+              {/* Current */}
+              <div className="relative pb-12">
+                <span className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-[#fffaf3] bg-[#2563eb]" />
+
+                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[#2563eb]">
+                  Current Leadership
+                </p>
+
+                <h3 className="mt-3 text-2xl font-semibold text-[#172033]">
+                  Senior Manager, Technical Account Management
+                </h3>
+
+                <p className="mt-3 leading-7 text-[#667085]">
+                  Leading global TAM shared-services capability, customer-facing
+                  technical strategy and scalable operating models across complex
+                  enterprise software environments.
+                </p>
+              </div>
+
+              {/* Engineering / Program Leadership */}
+              <div className="relative pb-12">
+                <span className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-[#fffaf3] bg-[#f97360]" />
+
+                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[#f97360]">
+                  Prior Leadership
+                </p>
+
+                <h3 className="mt-3 text-2xl font-semibold text-[#172033]">
+                  Engineering & Technical Program Leadership
+                </h3>
+
+                <p className="mt-3 leading-7 text-[#667085]">
+                  Progressed through senior engineering and technical leadership
+                  roles, driving complex product and technology initiatives across
+                  enterprise software.
+                </p>
+              </div>
+
+              {/* Earlier career */}
+              <div className="relative">
+                <span className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-[#fffaf3] bg-[#f4b942]" />
+
+                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[#b88900]">
+                  Foundation
+                </p>
+
+                <h3 className="mt-3 text-2xl font-semibold text-[#172033]">
+                  Technology & Enterprise Experience
+                </h3>
+
+                <p className="mt-3 leading-7 text-[#667085]">
+                  Built a broad technology foundation across multiple industries
+                  and enterprise environments, developing the technical depth that
+                  now informs customer and organizational leadership.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Existing sections */}
       <FeaturedThinking />
       <FrameworkLibrary />
