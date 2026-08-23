@@ -130,6 +130,152 @@ export default function FrameworksPage() {
 
         </div>
       </section>
+            {/* Selected Work */}
+      <section className="bg-[#fffaf3]">
+        <div className="mx-auto max-w-6xl px-8 py-20 md:px-10">
+
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#2563eb]">
+              Selected Work
+            </p>
+
+            <h2 className="mt-5 text-4xl font-semibold tracking-tight text-[#172033] md:text-5xl">
+              Ideas shaped by building real capabilities.
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-[#667085]">
+              Some of these perspectives emerged from solving real
+              organizational problems—not from theory alone.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+
+            {/* Global Customer Capability */}
+            <article className="rounded-3xl border border-[#172033]/10 bg-white p-8 md:p-10">
+
+              <span className="text-sm font-semibold tracking-[0.15em] text-[#2563eb]">
+                01
+              </span>
+
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-[#98a2b3]">
+                SHARED SERVICES · OPERATING MODEL
+              </p>
+
+              <h3 className="mt-6 text-3xl font-semibold tracking-tight text-[#172033]">
+                Global Customer Capability
+              </h3>
+
+              <p className="mt-5 text-lg leading-8 text-[#667085]">
+                Designing a scalable shared-services model to extend
+                technical customer engagement beyond traditional account
+                coverage.
+              </p>
+
+              <p className="mt-5 leading-7 text-[#172033]">
+                The work brings together engagement boundaries, operating
+                model design, coverage architecture, intake mechanisms,
+                capability development and measures of success.
+              </p>
+
+              <div className="mt-8 border-t border-[#172033]/10 pt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#667085]">
+                  Selected dimensions
+                </p>
+
+                <p className="mt-3 text-sm leading-7 text-[#172033]">
+                  Shared Services · Capability Design · Global Coverage ·
+                  Customer Outcomes
+                </p>
+              </div>
+
+            </article>
+
+            {/* Execution Excellence */}
+<article className="rounded-3xl border border-[#172033]/10 bg-white p-8 md:p-10">
+
+  <span className="text-sm font-semibold tracking-[0.15em] text-[#f97360]">
+    02
+  </span>
+
+  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-[#98a2b3]">
+    STRATEGY · EXECUTION
+  </p>
+
+  <h3 className="mt-6 text-3xl font-semibold tracking-tight text-[#172033]">
+    Execution Excellence
+  </h3>
+
+  <p className="mt-5 text-lg leading-8 text-[#667085]">
+    A different lens on how strategic priorities translate into disciplined execution.
+  </p>
+
+  <p className="mt-5 leading-7 text-[#172033]">
+    A framework developed through work across technology, customers and
+    organizational change to connect strategic intent with execution
+    discipline and organizational capability.
+  </p>
+
+  <div className="mt-8 border-t border-[#172033]/10 pt-6">
+    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#667085]">
+      Selected dimensions
+    </p>
+
+    <p className="mt-3 text-sm leading-7 text-[#172033]">
+      Strategy · Execution · Organizational Capability · Transformation
+    </p>
+  </div>
+
+</article>
+
+            {/* Customer Health Intelligence */}
+            <article className="rounded-3xl border border-[#172033]/10 bg-white p-8 md:col-span-2 md:p-10">
+
+              <div className="max-w-3xl">
+
+                <span className="text-sm font-semibold tracking-[0.15em] text-[#b88900]">
+                  03
+                </span>
+
+                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-[#98a2b3]">
+                  CUSTOMER ORGANIZATIONS · INTELLIGENCE
+                </p>
+
+                <h3 className="mt-6 text-3xl font-semibold tracking-tight text-[#172033] md:text-4xl">
+                  Customer Health Intelligence
+                </h3>
+
+                <p className="mt-5 text-lg leading-8 text-[#667085]">
+                  Turning fragmented customer signals into a more connected
+                  view of intervention and value.
+                </p>
+
+                <p className="mt-5 leading-7 text-[#172033]">
+                  The perspective connects adoption, technical success,
+                  engagement, value realization and renewal readiness to
+                  help leaders understand where intervention can create the
+                  greatest customer and business impact.
+                </p>
+
+                <div className="mt-8 border-t border-[#172033]/10 pt-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#667085]">
+                    Selected dimensions
+                  </p>
+
+                  <p className="mt-3 text-sm leading-7 text-[#172033]">
+                    Customer Health · Adoption · Value Realization ·
+                    Renewal Readiness
+                  </p>
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+      </section>
 
       {/* Controlled Access */}
       <section className="bg-[#fffaf3]">
