@@ -13,7 +13,7 @@ export default function ContactPage() {
 
         <div className="mt-20 max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#f97360]">
-            Let's Talk
+            Let&apos;s Talk
           </p>
 
           <h1 className="mt-6 text-5xl font-semibold leading-tight tracking-[-0.04em] text-[#172033] md:text-7xl">
@@ -27,10 +27,10 @@ export default function ContactPage() {
 
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="#book-time"
+              href="mailto:contact@priyanshushrivastava.com"
               className="rounded-full bg-[#172033] px-7 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#2563eb]"
             >
-              Book Time →
+              Email Me →
             </a>
 
             <Link
@@ -51,21 +51,25 @@ export default function ContactPage() {
           </p>
 
           <h2 className="mt-5 text-3xl font-semibold md:text-4xl">
-            Let's find a time to talk.
+            Let&apos;s find a time to talk.
           </h2>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-white/65">
-            A scheduling link will be available here. This can later connect
-            directly to the calendar and booking service you choose.
+            Prefer to start with a note? Send me an email and tell me what
+            you&apos;re working through. If a conversation makes sense, we can
+            take it from there.
           </p>
 
-          <button
-            type="button"
-            disabled
-            className="mt-8 cursor-not-allowed rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white/50"
+          <a
+            href="mailto:contact@priyanshushrivastava.com"
+            className="mt-8 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#172033] transition hover:-translate-y-0.5 hover:bg-[#f4b942]"
           >
-            Booking link coming soon
-          </button>
+            Start a Conversation →
+          </a>
+
+          <p className="mt-5 text-sm text-white/45">
+            Calendar scheduling will be available here soon.
+          </p>
         </div>
       </section>
     </main>
