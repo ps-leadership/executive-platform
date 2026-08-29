@@ -452,12 +452,12 @@ export default function AboutPage() {
               </p>
 
               <h3 className="mt-6 text-2xl font-semibold text-[#172033]">
-                PMP · CSM · ITIL
+              PMP · CSM · ITIL · CC
               </h3>
 
               <p className="mt-4 leading-7 text-[#667085]">
                 Professional certifications supporting program delivery, agile
-                practices and IT service management.
+                practices, IT service management and cybersecurity.
               </p>
             </article>
 

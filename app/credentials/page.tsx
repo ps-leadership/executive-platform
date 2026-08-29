@@ -31,6 +31,11 @@ const certifications = [
     name: "IT Service Management",
     area: "Service Management",
   },
+  {
+    title: "CC",
+    name: "Certified in Cybersecurity",
+    area: "Cybersecurity",
+  },
 ];
 
 const credentialPrinciples = [
@@ -140,7 +145,7 @@ export default function CredentialsPage() {
             Professional disciplines that complement the experience.
           </h2>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 
             {certifications.map((item) => (
               <article
