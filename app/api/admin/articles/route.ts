@@ -1,82 +1,91 @@
 import { NextResponse } from "next/server";
-import { createArticle } from "@/lib/articles";
+import clientPromise from "@/lib/mongodb";
+import { createArticle, type MongoArticle } from "@/lib/articles";
+
+const DATABASE_NAME = "executive_platform";
+const COLLECTION_NAME = "articles";
+
+export async function GET() {
+  try {
+    const client = await clientPromise;
+
+    const articles = await client
+      .db(DATABASE_NAME)
+      .collection<MongoArticle>(COLLECTION_NAME)
+      .find({})
+      .sort({ updatedAt: -1 })
+      .toArray();
+
+    return NextResponse.json(articles);
+  } catch (error) {
+    console.error("Failed to fetch content:", error);
+
+    return NextResponse.json(
+      { error: "Failed to fetch content." },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const requiredFields = [
-      "title",
-      "slug",
-      "excerpt",
-      "date",
-      "category",
-      "readingTime",
-      "content",
-      "status",
-    ];
+    const {
+      title,
+      slug,
+      excerpt,
+      date,
+      category,
+      readingTime,
+      sourceUrl,
+      content,
+      contentType,
+      status,
+      accessLevel,
+      requiresApproval,
+      featured,
+      licenseEnabled,
+      licenseType,
+      termsVersion,
+    } = body;
 
-    for (const field of requiredFields) {
-      if (!body[field]) {
-        return NextResponse.json(
-          { error: `${field} is required` },
-          { status: 400 }
-        );
-      }
-    }
-
-    if (!["draft", "published", "archived"].includes(body.status)) {
+    if (!title || !slug || !content) {
       return NextResponse.json(
-        { error: "Invalid article status" },
-        { status: 400 }
-      );
-    }
-
-    if (
-      !body.access?.level ||
-      !["public", "protected", "licensed"].includes(body.access.level)
-    ) {
-      return NextResponse.json(
-        { error: "Invalid access level" },
+        { error: "Title, slug, and content are required." },
         { status: 400 }
       );
     }
 
     const article = await createArticle({
-      slug: body.slug.trim(),
-      title: body.title.trim(),
-      excerpt: body.excerpt.trim(),
-      date: body.date.trim(),
-      category: body.category.trim(),
-      readingTime: body.readingTime.trim(),
-      sourceUrl: body.sourceUrl?.trim() || "",
-      content: body.content,
-      featured: Boolean(body.featured),
-      status: body.status,
+      title,
+      slug,
+      excerpt: excerpt || "",
+      date: date || "",
+      category: category || "",
+      readingTime: readingTime || "",
+      sourceUrl: sourceUrl || "",
+      content,
+      contentType: contentType || "article",
+      featured: Boolean(featured),
+      status: status || "draft",
       access: {
-        level: body.access.level,
-        requiresApproval: Boolean(body.access.requiresApproval),
+        level: accessLevel || "public",
+        requiresApproval: Boolean(requiresApproval),
       },
       licensing: {
-        enabled: body.access.level === "licensed",
+        enabled: Boolean(licenseEnabled),
+        licenseType: licenseType || undefined,
+        termsVersion: termsVersion || undefined,
       },
     });
 
-    return NextResponse.json(
-      {
-        message: "Article created successfully",
-        article: {
-          slug: article.slug,
-          title: article.title,
-        },
-      },
-      { status: 201 }
-    );
+    return NextResponse.json(article, { status: 201 });
   } catch (error) {
-    console.error("Create article error:", error);
+    console.error("Failed to create content:", error);
 
     return NextResponse.json(
-      { error: "Failed to create article" },
+      { error: "Failed to create content." },
       { status: 500 }
     );
   }

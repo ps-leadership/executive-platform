@@ -3,6 +3,15 @@ import clientPromise from "@/lib/mongodb";
 export type ArticleAccess = "public" | "protected" | "licensed";
 export type ArticleStatus = "draft" | "published" | "archived";
 
+export type ContentType =
+  | "article"
+  | "framework"
+  | "playbook"
+  | "assessment"
+  | "research"
+  | "case-study"
+  | "document";
+
 export type MongoArticle = {
   slug: string;
   title: string;
@@ -13,6 +22,8 @@ export type MongoArticle = {
   sourceUrl?: string;
   content: string;
   featured?: boolean;
+
+  contentType: ContentType;
 
   status: ArticleStatus;
 
@@ -36,10 +47,7 @@ const COLLECTION_NAME = "articles";
 
 async function getArticlesCollection() {
   const client = await clientPromise;
-
-  return client
-    .db(DATABASE_NAME)
-    .collection<MongoArticle>(COLLECTION_NAME);
+  return client.db(DATABASE_NAME).collection<MongoArticle>(COLLECTION_NAME);
 }
 
 export async function getPublishedArticles() {
