@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import type { MongoArticle } from "@/lib/articles";
+import { getCurrentSession } from "@/lib/session";
 
 const DATABASE_NAME = "executive_platform";
 const COLLECTION_NAME = "articles";
@@ -9,10 +10,16 @@ type RouteContext = {
   params: Promise<{ slug: string }>;
 };
 
-export async function GET(
-  _request: Request,
-  context: RouteContext
-) {
+export async function GET(_request: Request, context: RouteContext) {
+  const session = await getCurrentSession();
+
+  if (!session) {
+    return NextResponse.json(
+      { error: "Unauthorized." },
+      { status: 401 }
+    );
+  }
+
   try {
     const { slug } = await context.params;
 
@@ -45,6 +52,15 @@ export async function PATCH(
   request: Request,
   context: RouteContext
 ) {
+  const session = await getCurrentSession();
+
+  if (!session) {
+    return NextResponse.json(
+      { error: "Unauthorized." },
+      { status: 401 }
+    );
+  }
+
   try {
     const { slug } = await context.params;
     const body = await request.json();
@@ -65,9 +81,7 @@ export async function PATCH(
       .collection<MongoArticle>(COLLECTION_NAME)
       .updateOne(
         { slug },
-        {
-          $set: updates,
-        }
+        { $set: updates }
       );
 
     if (result.matchedCount === 0) {
@@ -97,6 +111,15 @@ export async function DELETE(
   _request: Request,
   context: RouteContext
 ) {
+  const session = await getCurrentSession();
+
+  if (!session) {
+    return NextResponse.json(
+      { error: "Unauthorized." },
+      { status: 401 }
+    );
+  }
+
   try {
     const { slug } = await context.params;
 

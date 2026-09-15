@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 import { createArticle, type MongoArticle } from "@/lib/articles";
+import { getCurrentSession } from "@/lib/session";
 
 const DATABASE_NAME = "executive_platform";
 const COLLECTION_NAME = "articles";
 
 export async function GET() {
+  const session = await getCurrentSession();
+
+  if (!session) {
+    return NextResponse.json(
+      { error: "Unauthorized." },
+      { status: 401 }
+    );
+  }
+
   try {
     const client = await clientPromise;
 
@@ -28,6 +38,15 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const session = await getCurrentSession();
+
+  if (!session) {
+    return NextResponse.json(
+      { error: "Unauthorized." },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
 
