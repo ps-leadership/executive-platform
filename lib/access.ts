@@ -83,11 +83,24 @@ export async function createAccessRequest(
 ) {
   const db = await getDatabase();
 
+  const normalizedEmail = request.email.toLowerCase().trim();
   const now = new Date();
+
+  const existingRequest = await db
+    .collection<AccessRequest>("access_requests")
+    .findOne({
+      email: normalizedEmail,
+      articleSlug: request.articleSlug,
+      status: "pending",
+    });
+
+  if (existingRequest) {
+    return existingRequest;
+  }
 
   const document: AccessRequest = {
     ...request,
-    email: request.email.toLowerCase().trim(),
+    email: normalizedEmail,
     status: "pending",
     createdAt: now,
     updatedAt: now,
@@ -116,6 +129,54 @@ export async function findAccessRequest(
 }
 
 /*
+ * List access requests for admin review.
+ */
+export async function listAccessRequests(
+  status?: AccessRequestStatus
+) {
+  const db = await getDatabase();
+
+  const filter = status ? { status } : {};
+
+  return db
+    .collection<AccessRequest>("access_requests")
+    .find(filter)
+    .sort({ createdAt: -1 })
+    .toArray();
+}
+
+/*
+ * Update an access request status.
+ */
+export async function updateAccessRequestStatus(
+  email: string,
+  articleSlug: string,
+  status: AccessRequestStatus
+) {
+  const db = await getDatabase();
+
+  const result = await db
+    .collection<AccessRequest>("access_requests")
+    .findOneAndUpdate(
+      {
+        email: email.toLowerCase().trim(),
+        articleSlug,
+      },
+      {
+        $set: {
+          status,
+          updatedAt: new Date(),
+        },
+      },
+      {
+        returnDocument: "after",
+      }
+    );
+
+  return result;
+}
+
+/*
  * Grant access to an article.
  */
 export async function createAccessGrant(
@@ -123,9 +184,23 @@ export async function createAccessGrant(
 ) {
   const db = await getDatabase();
 
+  const normalizedEmail = grant.email.toLowerCase().trim();
+
+  const existingGrant = await db
+    .collection<AccessGrant>("access_grants")
+    .findOne({
+      email: normalizedEmail,
+      articleSlug: grant.articleSlug,
+      status: "active",
+    });
+
+  if (existingGrant) {
+    return existingGrant;
+  }
+
   const document: AccessGrant = {
     ...grant,
-    email: grant.email.toLowerCase().trim(),
+    email: normalizedEmail,
     status: "active",
     grantedAt: new Date(),
   };
@@ -133,6 +208,21 @@ export async function createAccessGrant(
   await db.collection<AccessGrant>("access_grants").insertOne(document);
 
   return document;
+}
+
+/*
+ * Find an access grant.
+ */
+export async function findAccessGrant(
+  email: string,
+  articleSlug: string
+) {
+  const db = await getDatabase();
+
+  return db.collection<AccessGrant>("access_grants").findOne({
+    email: email.toLowerCase().trim(),
+    articleSlug,
+  });
 }
 
 /*
@@ -170,6 +260,33 @@ export async function hasArticleAccess(
   }
 
   return true;
+}
+
+/*
+ * Revoke an access grant.
+ */
+export async function revokeAccessGrant(
+  email: string,
+  articleSlug: string
+) {
+  const db = await getDatabase();
+
+  const result = await db
+    .collection<AccessGrant>("access_grants")
+    .updateOne(
+      {
+        email: email.toLowerCase().trim(),
+        articleSlug,
+        status: "active",
+      },
+      {
+        $set: {
+          status: "revoked",
+        },
+      }
+    );
+
+  return result;
 }
 
 /*
