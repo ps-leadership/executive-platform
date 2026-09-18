@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 
 import { articles as staticArticles } from "@/data/articles";
 import { getArticleBySlug } from "@/lib/articles";
+import RequestAccessForm from "./RequestAccessForm";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,11 +24,59 @@ export default async function ArticlePage({ params }: Props) {
    * MongoDB article
    */
   if (mongoArticle) {
-    if (
-      mongoArticle.status !== "published" ||
-      mongoArticle.access.level !== "public"
-    ) {
-      notFound();
+    if (mongoArticle.status !== "published") {
+      return (
+        <main className="min-h-screen bg-white text-slate-900">
+          <div className="mx-auto max-w-4xl px-6 py-20 md:px-10 md:py-28">
+            <div className="max-w-2xl">
+              <p className="mb-5 text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
+                Content unavailable
+              </p>
+
+              <h1 className="text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+                This content is not currently available.
+              </h1>
+
+              <p className="mt-6 text-lg leading-8 text-slate-600">
+                This document may still be in preparation or may no
+                longer be published.
+              </p>
+            </div>
+          </div>
+        </main>
+      );
+    }
+
+    if (mongoArticle.access.level !== "public") {
+      return (
+        <main className="min-h-screen bg-white text-slate-900">
+          <div className="mx-auto max-w-4xl px-6 py-20 md:px-10 md:py-28">
+            <header className="max-w-3xl">
+              <p className="mb-5 text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
+                {mongoArticle.category}
+              </p>
+
+              <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-slate-900 md:text-6xl">
+                {mongoArticle.title}
+              </h1>
+
+              <p className="mt-7 max-w-2xl text-xl leading-8 text-slate-600 md:text-2xl md:leading-9">
+                {mongoArticle.excerpt}
+              </p>
+
+              <div className="mt-8 flex items-center gap-3 text-sm text-slate-500">
+                <span>{mongoArticle.date}</span>
+                <span>·</span>
+                <span>{mongoArticle.readingTime}</span>
+              </div>
+            </header>
+
+            <div className="my-14 h-px bg-slate-200" />
+
+            <RequestAccessForm articleSlug={mongoArticle.slug} />
+          </div>
+        </main>
+      );
     }
 
     return (
@@ -117,7 +166,33 @@ export default async function ArticlePage({ params }: Props) {
   );
 
   if (!staticArticle) {
-    notFound();
+    return (
+      <main className="min-h-screen bg-white text-slate-900">
+        <div className="mx-auto max-w-4xl px-6 py-20 md:px-10 md:py-28">
+          <div className="max-w-2xl">
+            <p className="mb-5 text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
+              Content unavailable
+            </p>
+
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+              This content could not be found.
+            </h1>
+
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              The page may have moved, been removed, or is not
+              currently available.
+            </p>
+
+            <a
+              href="/insights"
+              className="mt-8 inline-block text-sm font-medium text-slate-900 transition hover:text-slate-600"
+            >
+              ← Back to Insights
+            </a>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   const filePath = path.join(
@@ -128,7 +203,32 @@ export default async function ArticlePage({ params }: Props) {
   );
 
   if (!fs.existsSync(filePath)) {
-    notFound();
+    return (
+      <main className="min-h-screen bg-white text-slate-900">
+        <div className="mx-auto max-w-4xl px-6 py-20 md:px-10 md:py-28">
+          <div className="max-w-2xl">
+            <p className="mb-5 text-sm font-medium uppercase tracking-[0.18em] text-slate-500">
+              Content unavailable
+            </p>
+
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+              This content is temporarily unavailable.
+            </h1>
+
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Please return to Insights and try again later.
+            </p>
+
+            <a
+              href="/insights"
+              className="mt-8 inline-block text-sm font-medium text-slate-900 transition hover:text-slate-600"
+            >
+              ← Back to Insights
+            </a>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   const content = fs.readFileSync(filePath, "utf8");
@@ -180,7 +280,6 @@ export default async function ArticlePage({ params }: Props) {
             [&_strong]:text-slate-900
             [&_ul]:my-8
             [&_ul]:space-y-3
-            [&_ul]:pl-6
             [&_li]:pl-2
             [&_blockquote]:my-10
             [&_blockquote]:border-l-2
